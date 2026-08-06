@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Predict Crop Disease Risk</h2>
+
+<div class="card">
+  <p class="hint">
+    Enter your readings. Typical ranges — NDVI/GNDVI/EVI: 0–1 • Rain: 0–300 mm • Temp: 10–45 °C •
+    Humidity: 10–100% • Δ indices: −1–1 • Ratio: 0–2 • Week: 1–52
+  </p>
+
+  <form method="post" class="grid-form">
+    {% csrf_token %}
+
+    <div class="field">{{ manual_form.ndvi.label_tag }}{{ manual_form.ndvi }}{% if manual_form.ndvi.errors %}<div class="err">{{ manual_form.ndvi.errors|striptags }}</div>{% endif %}</div>
+    <div class="field">{{ manual_form.gndvi.label_tag }}{{ manual_form.gndvi }}{% if manual_form.gndvi.errors %}<div class="err">{{ manual_form.gndvi.errors|striptags }}</div>{% endif %}</div>
+    <div class="field">{{ manual_form.evi.label_tag }}{{ manual_form.evi }}{% if manual_form.evi.errors %}<div class="err">{{ manual_form.evi.errors|striptags }}</div>{% endif %}</div>
+
+    <div class="field">{{ manual_form.rain.label_tag }}{{ manual_form.rain }}{% if manual_form.rain.errors %}<div class="err">{{ manual_form.rain.errors|striptags }}</div>{% endif %}</div>
+    <div class="field">{{ manual_form.temp.label_tag }}{{ manual_form.temp }}{% if manual_form.temp.errors %}<div class="err">{{ manual_form.temp.errors|striptags }}</div>{% endif %}</div>
+    <div class="field">{{ manual_form.humidity.label_tag }}{{ manual_form.humidity }}{% if manual_form.humidity.errors %}<div class="err">{{ manual_form.humidity.errors|striptags }}</div>{% endif %}</div>
+
+    <div class="field">{{ manual_form.ndvi_lag1.label_tag }}{{ manual_form.ndvi_lag1 }}</div>
+    <div class="field">{{ manual_form.ndvi_lag2.label_tag }}{{ manual_form.ndvi_lag2 }}</div>
+    <div class="field">{{ manual_form.gndvi_lag1.label_tag }}{{ manual_form.gndvi_lag1 }}</div>
+
+    <div class="field">{{ manual_form.evi_lag1.label_tag }}{{ manual_form.evi_lag1 }}</div>
+    <div class="field">{{ manual_form.d_ndvi_1w.label_tag }}{{ manual_form.d_ndvi_1w }}</div>
+    <div class="field">{{ manual_form.d_gndvi_1w.label_tag }}{{ manual_form.d_gndvi_1w }}</div>
+
+    <div class="field">{{ manual_form.d_evi_1w.label_tag }}{{ manual_form.d_evi_1w }}</div>
+    <div class="field">{{ manual_form.re_ndvi_ratio.label_tag }}{{ manual_form.re_ndvi_ratio }}</div>
+    <div class="field">{{ manual_form.week.label_tag }}{{ manual_form.week }}</div>
+
+    <div class="actions"><button type="submit">Predict Now</button></div>
+  </form>
+</div>
+{% endblock %}

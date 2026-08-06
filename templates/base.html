@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>PhytoPulse — Multispectral Time-Series Early-Warning for Crops</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="layout">
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🌾</span>
+    <div class="brand-text">
+      <div class="brand-title">PhytoPulse</div>
+      <div class="brand-sub">Multispectral Time-Series Early-Warning for Crops</div>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="/">Home</a>
+    <a href="/form/">Predict</a>
+    <a href="/about/">About</a>
+  </nav>
+</header>
+
+<main class="container">
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">© {{ now|default:"" }} PhytoPulse • Built by Team 04</footer>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="hero card">
+  <h1>Early Crop Disease Risk, Before It Strikes</h1>
+  <p>
+    PhytoPulse anticipates disease risk using vegetation indices (NDVI, GNDVI, EVI),
+    weather (rain, temperature, humidity), and short time-series signals. Enter your
+    readings on the Predict page and get an instant risk band:
+    <b>🟢 Low</b> / <b>🟠 Moderate</b> / <b>🔴 High</b>.
+  </p>
+  <a class="btn" href="/form/">Start Prediction</a>
+</section>
+
+<section class="grid-3">
+  <article class="card">
+    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?q=80&w=1200&auto=format&fit=crop" alt="Field health" />
+    <h3>Problem Statement</h3>
+    <p>
+      Farmers often notice disease only after visible damage, when mitigation is costly.
+      We need an early-warning signal that flags risk <em>before</em> symptoms emerge.
+    </p>
+  </article>
+
+  <article class="card">
+    <img src="https://images.pexels.com/photos/169523/pexels-photo-169523.jpeg" alt="Existing system" />
+    <h3>Existing System & Limitations</h3>
+    <ul class="bullets">
+      <li>Manual scouting—late detection, human bias.</li>
+      <li>Rule-based thresholds—don’t adapt to context.</li>
+      <li>Fragmented data—indices and weather not fused.</li>
+    </ul>
+  </article>
+
+  <article class="card">
+    <img src="https://images.pexels.com/photos/1482101/pexels-photo-1482101.jpeg" alt="Proposed system" />
+    <h3>Proposed System & Merits</h3>
+    <ul class="bullets">
+      <li>Fuses vegetation + weather + lags for richer signals.</li>
+      <li>Time-aware modeling to anticipate near-term risk.</li>
+      <li>Simple UI: manual input → clear color-coded risk.</li>
+    </ul>
+  </article>
+</section>
+
+<section class="card">
+  <h3>How It Works</h3>
+  <ol class="steps">
+    <li>Collect your field readings (see ranges on the Predict page).</li>
+    <li>Enter values manually.</li>
+    <li>Get a risk score and band with guidance to act early.</li>
+  </ol>
+</section>
+
+{% endblock %}

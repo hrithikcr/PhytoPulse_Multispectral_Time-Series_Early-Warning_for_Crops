@@ -1,0 +1,854 @@
+:root {
+  /* Color palette */
+  --green: #1a4d2e;
+  --green-dark: #0f3320;
+  --lime: #a4de02;
+  --lime-light: #b8f020;
+  --bg: linear-gradient(135deg, #f7fdf8 0%, #e8f5e9 100%);
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --muted: #5f6b62;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(26, 77, 46, 0.08);
+  --shadow-md: 0 4px 16px rgba(26, 77, 46, 0.12);
+  --shadow-lg: 0 8px 24px rgba(26, 77, 46, 0.15);
+  --shadow-hover: 0 12px 32px rgba(26, 77, 46, 0.2);
+  
+  /* Transitions */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Sticky footer layout */
+body.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 1.5rem;
+  flex: 1;
+}
+
+footer.footer {
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  color: #fff;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: auto;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Title bar / topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+  padding: 1rem 1.5rem;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.topbar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(164, 222, 2, 0.1), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  to { left: 100%; }
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  transition: var(--transition);
+}
+
+.brand:hover {
+  transform: translateY(-2px);
+}
+
+.logo {
+  font-size: 1.8rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.brand-title {
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.brand-sub {
+  color: #d7f3cf;
+  font-size: 0.85rem;
+  margin-top: -2px;
+  opacity: 0.9;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  transition: var(--transition);
+  padding: 0.5rem 0;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--lime);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--lime);
+  transform: translateY(-1px);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+/* Cards & sections */
+.card {
+  background: var(--card);
+  padding: 1.8rem 2rem;
+  margin: 1.5rem 0;
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  border: 1px solid rgba(26, 77, 46, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--lime));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.card img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+.hero h1 {
+  margin: 0.5rem 0;
+  background: linear-gradient(135deg, var(--green), var(--lime));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.bullets {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}
+
+.bullets li {
+  margin: 0.6rem 0;
+  position: relative;
+  padding-left: 0.5rem;
+}
+
+.bullets li::marker {
+  color: var(--lime);
+}
+
+.steps {
+  padding-left: 1.5rem;
+}
+
+.btn {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(135deg, var(--lime), var(--lime-light));
+  color: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn:hover::before {
+  left: 100%;
+}
+
+/* Forms - Grid Layout */
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px 16px;
+}
+
+/* Field wrapper for form inputs */
+.field {
+  grid-column: span 4;
+}
+
+.field label {
+  display: block;
+  font-weight: 600;
+  color: var(--green);
+  margin-bottom: 6px;
+}
+
+/* Form actions (buttons) */
+.actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+/* Legacy form-group support (fallback for non-grid forms) */
+.form-group label {
+  font-weight: 600;
+  color: var(--green);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Input fields */
+.input {
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+  border: 2px solid #e0e9e3;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+/* Remove number spinners for clean look */
+.input[type="number"]::-webkit-outer-spin-button,
+.input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #7ccf8a;
+  box-shadow: 0 0 0 3px rgba(124, 207, 138, 0.25);
+}
+
+/* Button styling */
+.actions button,
+button {
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  color: #fff;
+  border: 0;
+  padding: 0.7rem 1.4rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: var(--transition);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+}
+
+.actions button:hover,
+button:hover {
+  background: linear-gradient(135deg, var(--lime), var(--lime-light));
+  color: var(--green-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+.full {
+  text-align: center;
+  margin-top: 1rem;
+  grid-column: 1 / -1;
+}
+
+/* Hint and error messages */
+.hint {
+  color: var(--muted);
+  margin: 6px 0 16px;
+  font-size: 0.95rem;
+}
+
+.err {
+  color: #c52828;
+  font-size: 0.9rem;
+  margin-top: 6px;
+  display: block;
+}
+
+/* Result chips */
+.chip {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.chip:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.chip.low {
+  background: linear-gradient(135deg, #2e7d32, #1b5e20);
+}
+
+.chip.medium {
+  background: linear-gradient(135deg, #f39c12, #e67e22);
+}
+
+.chip.high {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+/* About table + guide */
+.team {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  background: #fff;
+  box-shadow: var(--shadow-md);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.team th,
+.team td {
+  border: 1px solid #e8eee9;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+
+.team tbody tr:hover {
+  background: #f7fdf8;
+}
+
+.team thead {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.proj-title {
+  font-weight: 700;
+  color: var(--green);
+  margin-top: 0;
+  font-size: 1.8rem;
+}
+
+.guide-card {
+  margin-top: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #e7f6ea, #d4eed8);
+  color: #0d3b22;
+  border: 2px solid #bfe8c9;
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.guide-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--lime);
+}
+
+.guide-label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.guide-name {
+  font-weight: 700;
+  color: var(--green-dark);
+}
+
+/* Results Section */
+.result-wrap {
+  display: grid;
+  gap: 16px;
+}
+
+.result-card .result-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.metric-label {
+  color: var(--green);
+  font-weight: 600;
+  margin-bottom: 6px;
+  font-size: 0.9rem;
+}
+
+.metric-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.metric.mid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Progress bars */
+.progress {
+  height: 10px;
+  background: #e9f2eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progress-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #667;
+  margin-top: 4px;
+}
+
+/* Dots indicator */
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin: 0 6px 0 12px;
+}
+
+.dot:first-child {
+  margin-left: 0;
+}
+
+/* Color mapping for risk levels */
+.progress-bar.low {
+  background: #2e7d32;
+}
+
+.progress-bar.moderate {
+  background: #f39c12;
+}
+
+.progress-bar.high {
+  background: #c0392b;
+}
+
+.dot.low {
+  background: #2e7d32;
+}
+
+.dot.medium {
+  background: #f39c12;
+}
+
+.dot.high {
+  background: #c0392b;
+}
+
+/* Label value */
+.label-val small {
+  color: #667;
+}
+
+/* Inputs card collapsible */
+.inputs-card summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--green);
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.inputs-card summary:hover {
+  color: var(--lime);
+}
+
+.inputs-table {
+  overflow-x: auto;
+}
+
+.inputs-table table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.inputs-table th,
+.inputs-table td {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  border-bottom: 1px solid #eef2ee;
+  white-space: nowrap;
+}
+
+.inputs-table thead {
+  background: #f3faf4;
+}
+
+.inputs-table tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Tips section */
+.tips ul {
+  margin: 0.4rem 0 0 1.2rem;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Large Tablets & Small Desktops (1024px and below) */
+@media (max-width: 1024px) {
+  .container {
+    padding: 2.5rem 1.25rem;
+  }
+  
+  .field {
+    grid-column: span 6;
+  }
+  
+  .actions {
+    grid-column: 7 / span 6;
+  }
+  
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+  
+  .result-card .result-row {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .metric-value {
+    font-size: 1.4rem;
+  }
+}
+
+/* Tablets (900px and below) */
+@media (max-width: 900px) {
+  .result-card .result-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .grid-3 {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+  
+  .topbar {
+    justify-content: center;
+  }
+  
+  .nav {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav a {
+    margin: 0 0.75rem;
+  }
+}
+
+/* Mobile Landscape & Small Tablets (768px and below) */
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1rem;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .topbar {
+    padding: 0.75rem 1rem;
+  }
+  
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+  
+  .card img {
+    height: 150px;
+  }
+  
+  .team th,
+  .team td {
+    padding: 0.75rem 0.6rem;
+    font-size: 0.9rem;
+  }
+  
+  .guide-card {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .metric-value {
+    font-size: 1.3rem;
+  }
+  
+  .btn {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+  }
+  
+  button {
+    padding: 0.65rem 1.2rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Portrait (640px and below) */
+@media (max-width: 640px) {
+  .field {
+    grid-column: 1 / -1;
+  }
+  
+  .actions {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+  
+  .brand {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .brand-title {
+    font-size: 1.1rem;
+  }
+  
+  .nav a {
+    display: inline-block;
+    margin: 0.25rem 0.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .card {
+    padding: 1.25rem 1rem;
+    margin: 1rem 0;
+  }
+  
+  .hint {
+    font-size: 0.85rem;
+  }
+  
+  .inputs-table th,
+  .inputs-table td {
+    padding: 0.5rem 0.4rem;
+    font-size: 0.85rem;
+  }
+  
+  .proj-title {
+    font-size: 1.5rem;
+  }
+  
+  .metric-value {
+    font-size: 1.2rem;
+  }
+  
+  .chip {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.7rem;
+  }
+  
+  footer.footer {
+    padding: 1.25rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Extra Small Mobile (480px and below) */
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem 0.75rem;
+  }
+  
+  .hero h1 {
+    font-size: 1.5rem;
+  }
+  
+  .topbar {
+    padding: 0.6rem 0.75rem;
+  }
+  
+  .card {
+    padding: 1rem 0.75rem;
+    border-radius: 12px;
+  }
+  
+  .card img {
+    height: 120px;
+    border-radius: 8px;
+  }
+  
+  .btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  button {
+    width: 100%;
+    padding: 0.75rem;
+  }
+  
+  .input {
+    height: 40px;
+    font-size: 14px;
+  }
+  
+  .metric-value {
+    font-size: 1.1rem;
+  }
+  
+  .proj-title {
+    font-size: 1.3rem;
+  }
+  
+  .team {
+    font-size: 0.8rem;
+  }
+  
+  .team th,
+  .team td {
+    padding: 0.5rem 0.3rem;
+  }
+}

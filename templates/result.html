@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Results</h2>
+
+<section class="result-wrap">
+
+  <!-- Summary card -->
+  <div class="card result-card">
+    <div class="result-row">
+
+      <!-- Confidence -->
+      <div class="metric">
+        <div class="metric-label">Prediction Confidence</div>
+        <div class="metric-value">{{ confidence }}</div>
+      </div>
+
+      <!-- Severity -->
+      <div class="metric mid">
+        <div class="metric-label">Predicted Severity</div>
+        <div class="chip {{ band_class }}">{{ severity }}</div>
+
+        <div class="band-legend">
+          <span class="dot low"></span>Low
+          <span class="dot medium"></span>Medium
+          <span class="dot high"></span>High
+        </div>
+      </div>
+
+      <!-- Class ID -->
+      <div class="metric">
+        <div class="metric-label">Severity Class</div>
+        <div class="label-val">
+          <b>{{ severity_id }}</b>
+          <small>(0=Low, 1=Medium, 2=High)</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Probabilities -->
+  <details class="card inputs-card">
+    <summary>Class Probabilities</summary>
+    <table>
+      {% for k, v in probs.items %}
+      <tr>
+        <td>{{ k }}</td>
+        <td>{{ v }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </details>
+
+  <!-- Inputs -->
+  <details class="card inputs-card" open>
+    <summary>Inputs</summary>
+    <div class="inputs-table">
+      <table>
+        <thead>
+          <tr><th>Feature</th><th>Value</th></tr>
+        </thead>
+        <tbody>
+          {% for k, v in inputs.items %}
+          <tr>
+            <td>{{ k|upper }}</td>
+            <td>{{ v }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </details>
+
+  <!-- Guidance -->
+  <div class="card tips">
+    <h4>What this means</h4>
+    <ul>
+      <li>🟢 Low: routine monitoring.</li>
+      <li>🟠 Medium: monitor closely and take preventive steps.</li>
+      <li>🔴 High: inspect fields promptly and take action.</li>
+    </ul>
+  </div>
+
+</section>
+{% endblock %}
